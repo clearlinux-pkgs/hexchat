@@ -4,7 +4,7 @@
 #
 Name     : hexchat
 Version  : 2.12.0
-Release  : 2
+Release  : 3
 URL      : https://dl.hexchat.net/hexchat/hexchat-2.12.0.tar.xz
 Source0  : https://dl.hexchat.net/hexchat/hexchat-2.12.0.tar.xz
 Summary  : Header and path for HexChat plugins
@@ -21,6 +21,7 @@ BuildRequires : gdk-pixbuf-dev
 BuildRequires : gettext
 BuildRequires : gtk+-dev
 BuildRequires : intltool
+BuildRequires : libnotify-dev
 BuildRequires : openssl-dev
 BuildRequires : perl(XML::Parser)
 BuildRequires : pkgconfig(dbus-1)

@@ -7,3 +7,4 @@ openssl-dev
 dbus-dev
 pkgconfig(libxml-2.0)
 python-dev
+libnotify-dev
