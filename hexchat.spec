@@ -4,7 +4,7 @@
 #
 Name     : hexchat
 Version  : 2.12.1
-Release  : 7
+Release  : 8
 URL      : https://dl.hexchat.net/hexchat/hexchat-2.12.1.tar.xz
 Source0  : https://dl.hexchat.net/hexchat/hexchat-2.12.1.tar.xz
 Summary  : Header and path for HexChat plugins
