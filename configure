@@ -1,1 +1,1 @@
---disable-lua
+--disable-lua --enable-python=python3
