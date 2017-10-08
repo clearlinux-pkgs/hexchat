@@ -6,7 +6,7 @@
 #
 Name     : hexchat
 Version  : 2.12.2
-Release  : 16
+Release  : 17
 URL      : https://dl.hexchat.net/hexchat/hexchat-2.12.2.tar.xz
 Source0  : https://dl.hexchat.net/hexchat/hexchat-2.12.2.tar.xz
 Source99 : https://dl.hexchat.net/hexchat/hexchat-2.12.2.tar.xz.asc
@@ -19,6 +19,7 @@ Requires: hexchat-data
 Requires: hexchat-locales
 Requires: hexchat-doc
 BuildRequires : dbus-dev
+BuildRequires : desktop-file-utils
 BuildRequires : gdk-pixbuf
 BuildRequires : gdk-pixbuf-dev
 BuildRequires : gettext
@@ -32,8 +33,10 @@ BuildRequires : pkgconfig(dbus-1)
 BuildRequires : pkgconfig(dbus-glib-1)
 BuildRequires : pkgconfig(gthread-2.0)
 BuildRequires : pkgconfig(gtk+-2.0)
-BuildRequires : pkgconfig(gtk+-3.0)
+BuildRequires : pkgconfig(libcanberra)
+BuildRequires : pkgconfig(libnotify)
 BuildRequires : pkgconfig(libpci)
+BuildRequires : pkgconfig(libproxy-1.0)
 BuildRequires : pkgconfig(libxml-2.0)
 BuildRequires : pkgconfig(openssl)
 BuildRequires : python3-dev
@@ -103,7 +106,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1507490160
+export SOURCE_DATE_EPOCH=1507490796
 %configure --disable-static --disable-lua --enable-python=python3
 make V=1  %{?_smp_mflags}
 
@@ -115,7 +118,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1507490160
+export SOURCE_DATE_EPOCH=1507490796
 rm -rf %{buildroot}
 %make_install
 %find_lang hexchat

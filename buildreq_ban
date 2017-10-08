@@ -1,10 +1,2 @@
 # This file contains build requirements that get picked up but are
 # undesirable. One entry per line, no whitespace.
-pkgconfig("iso-codes")
-pkgconfig(gtk-mac-integration)
-pkgconfig(libcanberra)
-pkgconfig(libnotify)
-pkgconfig(libproxy-1.0)
-pkgconfig(python-3.3)
-pkgconfig(python-3.4)
-desktop-file-utils

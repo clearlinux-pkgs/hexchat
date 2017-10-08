@@ -1,3 +1,7 @@
 # This file contains pkgconfig build requirements that get picked up
 # but are undesirable. One entry per line, no whitespace.
 gtk-mac-integration-gtk2
+"iso-codes"
+gtk-mac-integration
+python-3.3
+python-3.4
