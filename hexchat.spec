@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xB3C7CE210DE76DFC (tingping@fedoraproject.org)
 #
 Name     : hexchat
-Version  : 2.12.2
-Release  : 17
-URL      : https://dl.hexchat.net/hexchat/hexchat-2.12.2.tar.xz
-Source0  : https://dl.hexchat.net/hexchat/hexchat-2.12.2.tar.xz
-Source99 : https://dl.hexchat.net/hexchat/hexchat-2.12.2.tar.xz.asc
+Version  : 2.12.4
+Release  : 18
+URL      : https://dl.hexchat.net/hexchat/hexchat-2.12.4-repack.tar.xz
+Source0  : https://dl.hexchat.net/hexchat/hexchat-2.12.4-repack.tar.xz
+Source99 : https://dl.hexchat.net/hexchat/hexchat-2.12.4-repack.tar.xz.asc
 Summary  : Header and path for HexChat plugins
 Group    : Development/Tools
 License  : GPL-2.0 MIT
@@ -99,14 +99,14 @@ locales components for the hexchat package.
 
 
 %prep
-%setup -q -n hexchat-2.12.2
+%setup -q -n hexchat-2.12.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1507490796
+export SOURCE_DATE_EPOCH=1508342487
 %configure --disable-static --disable-lua --enable-python=python3
 make V=1  %{?_smp_mflags}
 
@@ -118,7 +118,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1507490796
+export SOURCE_DATE_EPOCH=1508342487
 rm -rf %{buildroot}
 %make_install
 %find_lang hexchat
@@ -150,7 +150,6 @@ rm -rf %{buildroot}
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/hexchat/plugins/checksum.so
-/usr/lib64/hexchat/plugins/doat.so
 /usr/lib64/hexchat/plugins/fishlim.so
 /usr/lib64/hexchat/plugins/perl.so
 /usr/lib64/hexchat/plugins/python.so

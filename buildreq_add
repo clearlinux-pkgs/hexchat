@@ -9,3 +9,4 @@ pkgconfig(libxml-2.0)
 libnotify-dev
 lua-dev
 python3-dev
+intltool
