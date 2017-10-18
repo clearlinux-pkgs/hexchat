@@ -1,1 +1,1 @@
---disable-lua --enable-python=python3
+--disable-lua --enable-python=python3 --disable-perl
