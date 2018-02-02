@@ -6,7 +6,7 @@
 #
 Name     : hexchat
 Version  : 2.12.4
-Release  : 19
+Release  : 20
 URL      : https://dl.hexchat.net/hexchat/hexchat-2.12.4-repack.tar.xz
 Source0  : https://dl.hexchat.net/hexchat/hexchat-2.12.4-repack.tar.xz
 Source99 : https://dl.hexchat.net/hexchat/hexchat-2.12.4-repack.tar.xz.asc
