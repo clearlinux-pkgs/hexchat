@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xB3C7CE210DE76DFC (tingping@fedoraproject.org)
 #
 Name     : hexchat
-Version  : 2.12.4
-Release  : 20
-URL      : https://dl.hexchat.net/hexchat/hexchat-2.12.4-repack.tar.xz
-Source0  : https://dl.hexchat.net/hexchat/hexchat-2.12.4-repack.tar.xz
-Source99 : https://dl.hexchat.net/hexchat/hexchat-2.12.4-repack.tar.xz.asc
+Version  : 2.14.1
+Release  : 21
+URL      : https://dl.hexchat.net/hexchat/hexchat-2.14.1.tar.xz
+Source0  : https://dl.hexchat.net/hexchat/hexchat-2.14.1.tar.xz
+Source99 : https://dl.hexchat.net/hexchat/hexchat-2.14.1.tar.xz.asc
 Summary  : Header and path for HexChat plugins
 Group    : Development/Tools
 License  : GPL-2.0 MIT
@@ -22,27 +22,22 @@ BuildRequires : dbus-dev
 BuildRequires : desktop-file-utils
 BuildRequires : gdk-pixbuf
 BuildRequires : gdk-pixbuf-dev
-BuildRequires : gettext
 BuildRequires : gtk+-dev
 BuildRequires : intltool
 BuildRequires : libnotify-dev
 BuildRequires : lua-dev
+BuildRequires : meson
+BuildRequires : ninja
 BuildRequires : openssl-dev
-BuildRequires : perl(XML::Parser)
-BuildRequires : pkgconfig(dbus-1)
 BuildRequires : pkgconfig(dbus-glib-1)
-BuildRequires : pkgconfig(gthread-2.0)
-BuildRequires : pkgconfig(gtk+-2.0)
 BuildRequires : pkgconfig(libcanberra)
-BuildRequires : pkgconfig(libnotify)
-BuildRequires : pkgconfig(libpci)
 BuildRequires : pkgconfig(libproxy-1.0)
 BuildRequires : pkgconfig(libxml-2.0)
-BuildRequires : pkgconfig(openssl)
+BuildRequires : python3
 BuildRequires : python3-dev
 
 %description
-# HexChat [![Build Status](http://img.shields.io/travis/hexchat/hexchat.svg?style=flat)](https://travis-ci.org/hexchat/hexchat) [![Build Status](http://img.shields.io/jenkins/s/http/node1.sored.pl:8090/hexchat.svg?style=flat)](http://node1.sored.pl:8090/job/hexchat/)
+# HexChat [![Build Status](http://img.shields.io/travis/hexchat/hexchat/master.svg?style=flat)](https://travis-ci.org/hexchat/hexchat) [![Build Status](https://img.shields.io/appveyor/ci/TingPing/hexchat/master.svg?style=flat)](https://ci.appveyor.com/project/TingPing/hexchat)
 
 %package bin
 Summary: bin components for the hexchat package.
@@ -99,28 +94,19 @@ locales components for the hexchat package.
 
 
 %prep
-%setup -q -n hexchat-2.12.4
+%setup -q -n hexchat-2.14.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1508345685
-%configure --disable-static --disable-lua --enable-python=python3 --disable-perl
-make V=1  %{?_smp_mflags}
-
-%check
-export LANG=C
-export http_proxy=http://127.0.0.1:9/
-export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+export SOURCE_DATE_EPOCH=1524066780
+CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain -Dwith-gtk=true -Dwith-ssl=true -Dwith-dbus=true -Dwith-libproxy=true -Dwith-libnotify=true -Dwith-libcanberra=true -Dwith-python=python3 -Dwith-lua=false -Dwith-perl=false  builddir
+ninja -v -C builddir
 
 %install
-export SOURCE_DATE_EPOCH=1508345685
-rm -rf %{buildroot}
-%make_install
+DESTDIR=%{buildroot} ninja -C builddir install
 %find_lang hexchat
 
 %files
@@ -132,11 +118,11 @@ rm -rf %{buildroot}
 
 %files data
 %defattr(-,root,root,-)
-/usr/share/appdata/hexchat.appdata.xml
-/usr/share/applications/hexchat.desktop
+/usr/share/applications/io.github.Hexchat.desktop
 /usr/share/dbus-1/services/org.hexchat.service.service
 /usr/share/icons/hicolor/48x48/apps/hexchat.png
 /usr/share/icons/hicolor/scalable/apps/hexchat.svg
+/usr/share/metainfo/io.github.Hexchat.appdata.xml
 
 %files dev
 %defattr(-,root,root,-)

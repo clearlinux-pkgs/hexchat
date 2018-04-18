@@ -1,1 +1,1 @@
---disable-lua --enable-python=python3 --disable-perl
+-Dwith-gtk=true -Dwith-ssl=true -Dwith-dbus=true -Dwith-libproxy=true -Dwith-libnotify=true -Dwith-libcanberra=true -Dwith-python=python3 -Dwith-lua=false -Dwith-perl=false
