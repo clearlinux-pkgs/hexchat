@@ -6,7 +6,7 @@
 #
 Name     : hexchat
 Version  : 2.14.1
-Release  : 23
+Release  : 24
 URL      : https://dl.hexchat.net/hexchat/hexchat-2.14.1.tar.xz
 Source0  : https://dl.hexchat.net/hexchat/hexchat-2.14.1.tar.xz
 Source99 : https://dl.hexchat.net/hexchat/hexchat-2.14.1.tar.xz.asc
