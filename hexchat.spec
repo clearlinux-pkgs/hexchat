@@ -6,7 +6,7 @@
 #
 Name     : hexchat
 Version  : 2.14.2
-Release  : 27
+Release  : 28
 URL      : https://dl.hexchat.net/hexchat/hexchat-2.14.2.tar.xz
 Source0  : https://dl.hexchat.net/hexchat/hexchat-2.14.2.tar.xz
 Source99 : https://dl.hexchat.net/hexchat/hexchat-2.14.2.tar.xz.asc
@@ -112,7 +112,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542325092
+export SOURCE_DATE_EPOCH=1542398627
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain -Dwith-gtk=true -Dwith-ssl=true -Dwith-dbus=true -Dwith-libproxy=true -Dwith-libnotify=true -Dwith-libcanberra=true -Dwith-python=python3 -Dwith-lua=false -Dwith-perl=false  builddir
 ninja -v -C builddir
 
