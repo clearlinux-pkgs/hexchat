@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xB3C7CE210DE76DFC (tingping@fedoraproject.org)
 #
 Name     : hexchat
-Version  : 2.14.2
-Release  : 30
-URL      : https://dl.hexchat.net/hexchat/hexchat-2.14.2.tar.xz
-Source0  : https://dl.hexchat.net/hexchat/hexchat-2.14.2.tar.xz
-Source99 : https://dl.hexchat.net/hexchat/hexchat-2.14.2.tar.xz.asc
+Version  : 2.14.3
+Release  : 31
+URL      : https://dl.hexchat.net/hexchat/hexchat-2.14.3.tar.xz
+Source0  : https://dl.hexchat.net/hexchat/hexchat-2.14.3.tar.xz
+Source1  : https://dl.hexchat.net/hexchat/hexchat-2.14.3.tar.xz.asc
 Summary  : Header and path for HexChat plugins
 Group    : Development/Tools
 License  : GPL-2.0 MIT
@@ -31,7 +31,9 @@ BuildRequires : libnotify-dev
 BuildRequires : lua-dev
 BuildRequires : openssl-dev
 BuildRequires : pkgconfig(dbus-glib-1)
+BuildRequires : pkgconfig(iso-codes)
 BuildRequires : pkgconfig(libcanberra)
+BuildRequires : pkgconfig(libpci)
 BuildRequires : pkgconfig(libproxy-1.0)
 BuildRequires : pkgconfig(libxml-2.0)
 BuildRequires : python3-dev
@@ -44,7 +46,6 @@ Summary: bin components for the hexchat package.
 Group: Binaries
 Requires: hexchat-data = %{version}-%{release}
 Requires: hexchat-license = %{version}-%{release}
-Requires: hexchat-man = %{version}-%{release}
 
 %description bin
 bin components for the hexchat package.
@@ -65,6 +66,7 @@ Requires: hexchat-lib = %{version}-%{release}
 Requires: hexchat-bin = %{version}-%{release}
 Requires: hexchat-data = %{version}-%{release}
 Provides: hexchat-devel = %{version}-%{release}
+Requires: hexchat = %{version}-%{release}
 
 %description dev
 dev components for the hexchat package.
@@ -105,21 +107,27 @@ man components for the hexchat package.
 
 
 %prep
-%setup -q -n hexchat-2.14.2
+%setup -q -n hexchat-2.14.3
+cd %{_builddir}/hexchat-2.14.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1542398627
-CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain -Dwith-gtk=true -Dwith-ssl=true -Dwith-dbus=true -Dwith-libproxy=true -Dwith-libnotify=true -Dwith-libcanberra=true -Dwith-python=python3 -Dwith-lua=false -Dwith-perl=false  builddir
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1577381391
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
+CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dwith-gtk=true -Dwith-ssl=true -Dwith-dbus=true -Dwith-libproxy=true -Dwith-libnotify=true -Dwith-libcanberra=true -Dwith-python=python3 -Dwith-lua=false -Dwith-perl=false  builddir
 ninja -v -C builddir
 
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/hexchat
-cp COPYING %{buildroot}/usr/share/package-licenses/hexchat/COPYING
-cp plugins/fishlim/LICENSE %{buildroot}/usr/share/package-licenses/hexchat/plugins_fishlim_LICENSE
+cp %{_builddir}/hexchat-2.14.3/COPYING %{buildroot}/usr/share/package-licenses/hexchat/0549952c48f2e28659ed9ea9fb459d9608ddeb62
+cp %{_builddir}/hexchat-2.14.3/plugins/fishlim/LICENSE %{buildroot}/usr/share/package-licenses/hexchat/1a7f659398a364d762c133a5d3b19221a18d7e74
 DESTDIR=%{buildroot} ninja -C builddir install
 %find_lang hexchat
 
@@ -140,7 +148,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/hexchat-plugin.h
 /usr/lib64/pkgconfig/hexchat-plugin.pc
 
 %files lib
@@ -152,8 +160,8 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/hexchat/COPYING
-/usr/share/package-licenses/hexchat/plugins_fishlim_LICENSE
+/usr/share/package-licenses/hexchat/0549952c48f2e28659ed9ea9fb459d9608ddeb62
+/usr/share/package-licenses/hexchat/1a7f659398a364d762c133a5d3b19221a18d7e74
 
 %files man
 %defattr(0644,root,root,0755)
