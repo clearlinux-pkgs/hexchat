@@ -6,7 +6,7 @@
 #
 Name     : hexchat
 Version  : 2.14.3
-Release  : 35
+Release  : 36
 URL      : https://dl.hexchat.net/hexchat/hexchat-2.14.3.tar.xz
 Source0  : https://dl.hexchat.net/hexchat/hexchat-2.14.3.tar.xz
 Source1  : https://dl.hexchat.net/hexchat/hexchat-2.14.3.tar.xz.asc
@@ -28,7 +28,6 @@ BuildRequires : gdk-pixbuf-dev
 BuildRequires : gtk+-dev
 BuildRequires : intltool
 BuildRequires : libnotify-dev
-BuildRequires : lua-dev
 BuildRequires : openssl-dev
 BuildRequires : pkgconfig(dbus-glib-1)
 BuildRequires : pkgconfig(iso-codes)
@@ -115,14 +114,29 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1577381391
+export SOURCE_DATE_EPOCH=1615405237
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
-CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dwith-gtk=true -Dwith-ssl=true -Dwith-dbus=true -Dwith-libproxy=true -Dwith-libnotify=true -Dwith-libcanberra=true -Dwith-python=python3 -Dwith-lua=false -Dwith-perl=false  builddir
+CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dwith-dbus=true \
+-Dwith-gtk=true \
+-Dwith-libcanberra=true \
+-Dwith-libnotify=true \
+-Dwith-libproxy=true \
+-Dwith-lua=false \
+-Dwith-perl=false \
+-Dwith-python=python3 \
+-Dwith-ssl=true  builddir
 ninja -v -C builddir
+
+%check
+export LANG=C.UTF-8
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+meson test -C builddir || :
 
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/hexchat
