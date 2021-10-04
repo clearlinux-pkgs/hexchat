@@ -1,5 +1,6 @@
-2.14.3
+2.16.0
 appstream-glib
+cffi
 desktop-file-utils
 pkgconfig(iso-codes)
 pkgconfig(libpci)
