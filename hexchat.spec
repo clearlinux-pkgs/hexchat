@@ -4,7 +4,7 @@
 #
 Name     : hexchat
 Version  : 2.16.0
-Release  : 37
+Release  : 38
 URL      : https://dl.hexchat.net/hexchat/hexchat-2.16.0.tar.xz
 Source0  : https://dl.hexchat.net/hexchat/hexchat-2.16.0.tar.xz
 Summary  : An Extensible Extension Language
@@ -121,21 +121,17 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1633384087
+export SOURCE_DATE_EPOCH=1637021635
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
 export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
-CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dwith-dbus=true \
--Dwith-gtk=true \
--Dwith-libcanberra=true \
--Dwith-libnotify=true \
--Dwith-libproxy=true \
+CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Ddbus=enabled \
+-Dlibcanberra=enabled \
 -Dwith-lua=false \
 -Dwith-perl=false \
--Dwith-python=python3 \
--Dwith-ssl=true  builddir
+-Dwith-python=python3  builddir
 ninja -v -C builddir
 
 %check

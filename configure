@@ -1,9 +1,5 @@
--Dwith-dbus=true
--Dwith-gtk=true
--Dwith-libcanberra=true
--Dwith-libnotify=true
--Dwith-libproxy=true
+-Ddbus=enabled
+-Dlibcanberra=enabled
 -Dwith-lua=false
 -Dwith-perl=false
 -Dwith-python=python3
--Dwith-ssl=true
