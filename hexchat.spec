@@ -4,7 +4,7 @@
 #
 Name     : hexchat
 Version  : 2.16.0
-Release  : 38
+Release  : 39
 URL      : https://dl.hexchat.net/hexchat/hexchat-2.16.0.tar.xz
 Source0  : https://dl.hexchat.net/hexchat/hexchat-2.16.0.tar.xz
 Summary  : An Extensible Extension Language
@@ -19,7 +19,6 @@ Requires: hexchat-man = %{version}-%{release}
 BuildRequires : appstream-glib
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-meson
-BuildRequires : cffi
 BuildRequires : dbus-dev
 BuildRequires : desktop-file-utils
 BuildRequires : gdk-pixbuf
@@ -34,6 +33,7 @@ BuildRequires : pkgconfig(libcanberra)
 BuildRequires : pkgconfig(libpci)
 BuildRequires : pkgconfig(libproxy-1.0)
 BuildRequires : pkgconfig(libxml-2.0)
+BuildRequires : pypi-cffi
 BuildRequires : python3-dev
 
 %description
@@ -121,7 +121,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1637021635
+export SOURCE_DATE_EPOCH=1641936741
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
