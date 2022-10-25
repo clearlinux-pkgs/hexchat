@@ -4,7 +4,7 @@
 #
 Name     : hexchat
 Version  : 2.16.1
-Release  : 41
+Release  : 42
 URL      : https://dl.hexchat.net/hexchat/hexchat-2.16.1.tar.xz
 Source0  : https://dl.hexchat.net/hexchat/hexchat-2.16.1.tar.xz
 Summary  : An Extensible Extension Language
@@ -121,7 +121,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1644950311
+export SOURCE_DATE_EPOCH=1666735074
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -143,8 +143,8 @@ meson test -C builddir --print-errorlogs || :
 
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/hexchat
-cp %{_builddir}/hexchat-2.16.1/COPYING %{buildroot}/usr/share/package-licenses/hexchat/0549952c48f2e28659ed9ea9fb459d9608ddeb62
-cp %{_builddir}/hexchat-2.16.1/plugins/fishlim/LICENSE %{buildroot}/usr/share/package-licenses/hexchat/1a7f659398a364d762c133a5d3b19221a18d7e74
+cp %{_builddir}/hexchat-%{version}/COPYING %{buildroot}/usr/share/package-licenses/hexchat/0549952c48f2e28659ed9ea9fb459d9608ddeb62 || :
+cp %{_builddir}/hexchat-%{version}/plugins/fishlim/LICENSE %{buildroot}/usr/share/package-licenses/hexchat/1a7f659398a364d762c133a5d3b19221a18d7e74 || :
 DESTDIR=%{buildroot} ninja -C builddir install
 %find_lang hexchat
 
